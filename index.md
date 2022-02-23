@@ -10,15 +10,15 @@ There are tens of thousands of posts on the AITA subreddit that can be accessed 
 
 ### Methods
 
-1. Word2Vec (Post2Vec):
+- Word2Vec (Post2Vec):
 
 Word2Vec is a word embedding technique that takes a group of texts and finds correlations between words by putting them into a vector space. Each vector consists of a few hundreds of dimensions, and a vector in the vector space represents a word. The proximity of any two vectors means that the two vectors are highly correlated. Considering the specificity of posts, we are going to split a post into two parts, title and story, and apply the method for both parts.
 
-2. BERT (Bidirectional Encoder Representations from Transformers):
+- BERT (Bidirectional Encoder Representations from Transformers):
 
 Like the Word2Vec Method, BERT learns contextual relations between words. As its name suggests, BERT supports two-way learning models and transfer learning. Also, it is possible to infer semantic and grammatical information between words.
 
-3. Naïve Bayesian
+- Naïve Bayesian
 
 We are looking to compare the accuracy and the precision of Word2Vec and BERT and appropriately combine them. Also, utilizing Naïve Bayesian, we are going to factor not only the posts itself, but the length of a post, gender and age into the process so that we can capture the tendencies that might have significantly affected the results.
 
