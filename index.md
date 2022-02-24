@@ -26,6 +26,11 @@ We are looking to compare the accuracy and the precision of Word2Vec and BERT an
 
 We hope to be able to compare our different models and determine which is the most accurate at predicting a post’s judgment. We expect there to be multiple factors that can increase the likelihood of a poster being declared “the asshole,” such as factors used by a Naive Bayesian network such as age or relationships, or factors used in Word2Vec such as the correlation between a title and a post. We expect the results to help us determine which factors are the largest contributor to a post’s verdict.
 
+
+### Link to Gantt Sheet
+
+Click on the following [link](https://docs.google.com/spreadsheets/d/1c5EcHU4atJxC3LtkHKbG2dMgIPzFvhRl5RgATvWg2Nk/edit?usp=sharing) to see our Gannt Sheet. 
+
 ### References 
 
 Mali, A., & Sedamkar, R. Prediction of Depression Using Machine Learning and NLP Approach, International Journal of Intelligent Communication, Accessed February 21, 2022, Retrieved from [https://www.ijiccn.com/images/files/vol2-issue1/Prediction-of-depression-using-Machine-Learng-and-NLP-approach.pdf](https://www.ijiccn.com/images/files/vol2-issue1/Prediction-of-depression-using-Machine-Learng-and-NLP-approach.pdf)
