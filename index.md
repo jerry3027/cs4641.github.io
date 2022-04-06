@@ -52,6 +52,14 @@ Prior to the final report, we plan to continue to alter the hyperparameters on u
 
 Our final model reached an accuracy of approximately 63.2%. If we define an asshole verdict as a positive result, we achieved a precision of approximately 83.7%, and a recall of 62.4%. Figure 3 and 4 show the normalized and unnormalized confusion matrices from our model.
 
+| ![Figure 3. The confusion matrix for our final Bert-implemented model](./images/confusion_matrix.png) |
+|:--:|
+| Figure 1. Number of Character in Title by Verdict |
+
+| ![body length vs number of posts](./images/normalised_confusion_matrix.png) |
+|:--:|
+| Figure 4. The normalized confusion matrix for our final Bert-implemented model |
+
 For this model, it is worth noting that we only considered data points that received either that “asshole” or “not the asshole” verdict—we did not consider the “no assholes here” or the “everyone sucks here” verdicts. These verdicts make up such a small fraction of the data points that we neglected them, however, prior to the final report we may consider these to analyze the effect of adding these verdicts to the Bert model, as well as the models we will implement in the future.
 
 ### Link to Gantt Sheet
