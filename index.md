@@ -55,9 +55,9 @@ Our final model reached an accuracy of approximately 63.2%. If we define an assh
 
 | ![Figure 3. The confusion matrix for our final Bert-implemented model](./images/confusion_matrix.png) |
 |:--:|
-| Figure 1. Number of Character in Title by Verdict |
+| Figure 3. The confusion matrix for our final Bert-implemented model |
 
-| ![body length vs number of posts](./images/normalised_confusion_matrix.png) |
+| ![Figure 4. The normalized confusion matrix for our final Bert-implemented model](./images/normalised_confusion_matrix.png) |
 |:--:|
 | Figure 4. The normalized confusion matrix for our final Bert-implemented model |
 
