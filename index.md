@@ -38,6 +38,7 @@ We utilized the huggingface library in implementing our Bert model. The huggingf
 
 ### Results of Implemented Method
 After training a few models with different hyperparameters, we converged on the following values for the hyperparameters of our Bert model:
+
 | Parameter | Value |
 | -- | -- |
 | Epochs | 4 |
