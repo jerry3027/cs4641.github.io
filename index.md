@@ -1,12 +1,23 @@
-### Introduction/Background
+### Introduction
 
 The popular social media site Reddit was founded in 2005 and has become one of the most influential social media platforms in the world. On the site, users can create subreddits, or a forum dedicated to a specific topic. One such subreddit is called “Am I the Asshole?” (AITA), and it allows users to post personal experiences or moral dilemmas so that other users can vote on whether the poster (OP) was in the wrong, or if they were the “asshole.”
 
-### Problem Definition
+### Problem Statement
 
 We aim to use a machine learning based prediction system to determine what verdict a specific post will receive if posted to the AITA subreddit. Such a system can allow users to circumvent the subreddit altogether, which can eliminate hateful or offensive responses that posters are often subject to when voters are passionate about their post. This system can also help us understand how the verbiage chosen to tell a story can affect how people respond to it.
 
-There are tens of thousands of posts on the AITA subreddit that can be accessed using Reddit’s API. We will use a subset of these posts for our predictive model. Each post on AITA has a user, timestamp, title, a varying number of comments, a post body with a character limit of 3,000, and a verdict. 
+There are tens of thousands of posts on the AITA subreddit that can be accessed using Reddit’s API. We will use a subset of these posts for our predictive model. Each post on AITA has a user, timestamp, title, a varying number of comments, a post body with a character limit of 3,000, and a verdict.
+
+### Data Cleaning and Visualization
+Using Reddit API, we collected data from 2012, when the subreddit was created, to 2020. Our current dataset contains approximately 1 million posts, and the items each post contains are as follows: timestamp, title, body, verdict(4 different answers), score, the number of comments, and the final result if the post writer was the “asshole.” For training on BERT, the verdicts were grouped together to convert the problem to that of binary classification. This modification fit naturally with the base dataset since within the verdicts, the two which were combined were already subsets of the parent verdict they were combined with. Some rudimentary data cleaning techniques such as normalizing font case and balancing data classes were performed. As our second and third methods are completed, we plan to use the data from 2021 to measure the accuracy and the precision of our methods. The figures below show the results organized by verdict and the number of characters in the title or text. Although no immediate trends appear from these plots, an important takeaway is the much larger amount of “asshole” verdicts that must be accounted for while training the methods. Additionally, the AITA subreddit generally limits posts to a 3000 character limit, which can be seen in Figure 2.
+
+| ![title length vs number of posts](./images/title_length_vs_num_posts.png) |
+|:--:|
+| Figure 1. Number of Character in Title by Verdict |
+
+| ![body length vs number of posts](./images/body_length_vs_num_posts.png) |
+|:--:|
+| Figure 2. Number of Character in Text by Verdict |
 
 ### Methods
 
@@ -22,16 +33,32 @@ Like the Word2Vec Method, BERT learns contextual relations between words. As its
 
 We are looking to compare the accuracy and the precision of Word2Vec and BERT and appropriately combine them. Also, utilizing Naïve Bayesian, we are going to factor not only the posts itself, but the length of a post, gender and age into the process so that we can capture the tendencies that might have significantly affected the results.
 
-### Potential Results
+### Bert Implementation
+We utilized the huggingface library in implementing our Bert model. The huggingface library is a NLP library that provides multiple off the shelf models. In this case, we used the “bert-base-uncased” model within the library. We added an additional linear layer after the pre-trained Bert. When training, we only modify the parameters in the last layer of Bert and the parameters in the added linear layer. This way, we can leverage the pretrained parameters containing semantics of the English vocabulary. We fine tuned the model to our specific task of judging whether a post is considered “asshole.”
 
-We hope to be able to compare our different models and determine which is the most accurate at predicting a post’s judgment. We expect there to be multiple factors that can increase the likelihood of a poster being declared “the asshole,” such as factors used by a Naive Bayesian network such as age or relationships, or factors used in Word2Vec such as the correlation between a title and a post. We expect the results to help us determine which factors are the largest contributor to a post’s verdict.
+### Results of Implemented Method
+After training a few models with different hyperparameters, we converged on the following values for the hyperparameters of our Bert model:
+| Parameter | Value |
+| -- | -- |
+| Epochs | 4 |
+| Beta coefficients | 0.9, 0.999 |
+| Weight Decay | 0.01 |
+| Batch Size | 8 |
+| Max Length | 500 |
 
+Some of the above parameters were default to the Bert implementation itself, while others were modified, either through trial and error or through independent research on supposedly optimal values. It is worth noting that, as will be discussed further, the results of this method were not as good as desired. This could be evidence of the fact that there is not necessarily a discernible pattern based on the input data of the final verdict of a post on the AITA subreddit, the Bert method is not suitable for this problem, or the hyperparameters have room for optimization.
+
+Prior to the final report, we plan to continue to alter the hyperparameters on upcoming iterations of our model to achieve more robust results, and the other methods we plan to implement will ideally achieve better results.
+
+Our final model reached an accuracy of approximately 63.2%. If we define an asshole verdict as a positive result, we achieved a precision of approximately 83.7%, and a recall of 62.4%. Figure 3 and 4 show the normalized and unnormalized confusion matrices from our model.
+
+For this model, it is worth noting that we only considered data points that received either that “asshole” or “not the asshole” verdict—we did not consider the “no assholes here” or the “everyone sucks here” verdicts. These verdicts make up such a small fraction of the data points that we neglected them, however, prior to the final report we may consider these to analyze the effect of adding these verdicts to the Bert model, as well as the models we will implement in the future.
 
 ### Link to Gantt Sheet
 
-Click on the following [link](https://docs.google.com/spreadsheets/d/1c5EcHU4atJxC3LtkHKbG2dMgIPzFvhRl5RgATvWg2Nk/edit?usp=sharing) to see our Gannt Sheet. 
+Click on the following [link](https://docs.google.com/spreadsheets/d/1c5EcHU4atJxC3LtkHKbG2dMgIPzFvhRl5RgATvWg2Nk/edit?usp=sharing) to see our Gannt Sheet.
 
-### References 
+### References
 
 Mali, A., & Sedamkar, R. Prediction of Depression Using Machine Learning and NLP Approach, International Journal of Intelligent Communication, Accessed February 21, 2022, Retrieved from [https://www.ijiccn.com/images/files/vol2-issue1/Prediction-of-depression-using-Machine-Learng-and-NLP-approach.pdf](https://www.ijiccn.com/images/files/vol2-issue1/Prediction-of-depression-using-Machine-Learng-and-NLP-approach.pdf)
 
