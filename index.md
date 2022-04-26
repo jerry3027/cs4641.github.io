@@ -49,8 +49,6 @@ After training a few models with different hyperparameters, we converged on the 
 
 Some of the above parameters were default to the Bert implementation itself, while others were modified, either through trial and error or through independent research on supposedly optimal values. It is worth noting that, as will be discussed further, the results of this method were not as good as desired. This could be evidence of the fact that there is not necessarily a discernible pattern based on the input data of the final verdict of a post on the AITA subreddit, the Bert method is not suitable for this problem, or the hyperparameters have room for optimization.
 
-Prior to the final report, we plan to continue to alter the hyperparameters on upcoming iterations of our model to achieve more robust results, and the other methods we plan to implement will ideally achieve better results.
-
 Our final model reached an accuracy of approximately 63.2%. If we define an asshole verdict as a positive result, we achieved a precision of approximately 83.7%, and a recall of 62.4%. Figure 3 and 4 show the normalized and unnormalized confusion matrices from our model.
 
 | ![Figure 3. The confusion matrix for our final Bert-implemented model](./images/confusion_matrix1.png) |
@@ -61,8 +59,7 @@ Our final model reached an accuracy of approximately 63.2%. If we define an assh
 |:--:|
 | Figure 4. The normalized confusion matrix for our final Bert-implemented model |
 
-For this model, it is worth noting that we only considered data points that received either that “asshole” or “not the asshole” verdict—we did not consider the “no assholes here” or the “everyone sucks here” verdicts. These verdicts make up such a small fraction of the data points that we neglected them, however, prior to the final report we may consider these to analyze the effect of adding these verdicts to the Bert model, as well as the models we will implement in the future.
-
+For all our models, it is worth noting that we only considered data points that received either that “asshole” or “not the asshole” verdict—we did not consider the “no assholes here” or the “everyone sucks here” verdicts. These verdicts make up such a small fraction of the data points that we neglected them.
 ### Doc2Vec Implementation
 We utilized the Gensim library to build our Doc2Vec model, and the nltk library for word tokenizing. Doc2Vec is an extended embedding method for Word2Vec. Both methods require tagged documents and treat the document_id’s as a word that appears in all contexts. For example, the document_id corresponding to the sentence “there is a tall boy” appears as [there, is, a, tall, document_id] in the context of the boy and [there, is, a, boy, document_id] in the context of the “tall.” Eventually, the vector corresponding to the document_id moves in a direction that approaches all the words that appear in the document. So even if the words in the two documents are different, if the vectors in the words are similar, the vectors in the two documents are similar.
 
